@@ -1,0 +1,250 @@
+-- SQL Commands for 471 Databse projects
+
+
+--Creating Database Commands
+
+CREATE TABLE end_user (
+    user_id VARCHAR(50) PRIMARY KEY,
+    user_name VARCHAR(50),
+    user_email VARCHAR(50),
+    user_password VARCHAR(30)
+);
+
+CREATE TABLE admin (
+    FOREIGN KEY(user_id) REFRENCES end_user(user_id) ON DELETE SET CASCADE
+    PRIMARY KEY(user_id)
+);
+
+CREATE TABLE cutstomer_id (
+    payment_info VARCHAR(6),
+    card_number INT,
+    cvv INT,
+    zip_code VARCHAR(7),
+    FOREIGN KEY(user_id) REFRENCES end_user(user_id) ON DELETE SET CASCADE,
+    PRIMARRY KEY(user_id)
+);
+
+CREATE TABLE airline (
+    airline_name VARCHAR(50) PRIMARY KEY,
+    airline_country VARCHAR(50),
+    airline_state/province VARCHAR(50),
+    airline_city VARCHAR(50),
+    airline_contact VARCHAR(100)
+
+);
+
+CREATE TABLE airport(
+    airport_code VARCHAR(5) PRIMARY KEY,
+    airport_city VARCHAR(50),
+    airport_country VARCHAR(50)
+);
+
+CREATE TABLE route (
+    route_name VARCHAR(200) PRIMARY KEY,
+    end_point VARCHAR(5),
+    start_point VARCHAR(5),
+    FOREIGN KEY(airport_code) REFRENCES airport(airport_code) ON DELETE SET NULL
+);
+
+CREATE TABLE flight(
+    flight_No VARCHAR(8) PRIMARY KEY,
+    seats_left INT,
+    dept_date_time TIMESTAMP,
+    arriv_date_time TIMESTAMP,
+    aircraft_type VARCHAR(20),
+    arriv_airportcode VARCHAR(10),
+    dept_airportcode VARCHAR(10),
+    FOREIGN KEY(route_name) REFRENCES route(route_name) ON DELETE SET NULL,
+    FOREIGN KEY(airline_name) REFRENCES airline(airline_name) ON DELTE SET CASCADE
+
+
+);
+
+CREATE TABLE flight_filters(
+    first_class_cost INT,
+    buisness_class_cost INT,
+    premium_economy_cost INT,
+    economy_cost INT,
+    FOREIGN KEY(flight_No) REFRENCES flight(flight_No) ON DELETE SET CASCADE
+);
+
+CREATE TABLE reservation(
+    reseravtion_number VARCHAR(100) PRIMARY KEY,
+    seat_id VARCHAR(20),
+    check_in INT,
+    carry_on INT,
+    reservation_date DATE,
+    FOREIGN KEY (route_name) REFRENCES route(route_name) ON DELETE SET NULL,
+    FOREIGN KEY (flight_No) REFRENCES flight(flight_No) ON DELETE SET CASCADE
+);
+
+CREATE TABLE airline_ratings(
+    ratings VARCHAR(500),
+    FOREIGN KEY(airline_name) REFRENCES airline(airline_name) ON DELETE SET CASCADE,
+    PRIMARY KEY (airline_name)
+);
+
+CREATE TABLE dispute (
+    ref_num INT PRIMARY KEY,
+    ref_type VARCHAR(5000),
+    FOREIGN KEY (user_id) REFRENCES customer_id(user_id) ON DELETE SET CASCADE,
+    FOREIGN KEY (user_id) REFRENCE admin(user_id) ON DELETE SET NULL,
+);
+
+CREATE TABLE consults (
+    FOREIGN KEY (ref_num) REFRENCES dispute(ref_num) ON DELETE SET NULL,
+    FOREIGN KEY (user_id) REFRENCES admin(user_id) ON DELETE SET NULL,
+);
+
+
+
+
+--Insert STATEMENTS
+--Can insert multiple rows if necessary
+INSERT INTO 'table name'('table values')
+VALUES ('value list'); --mathces above table values 
+
+INSERT INTO end_user(user_id, user_name, user_email, user_password)
+VALUES ('input1', 'input2', 'input3', 'input4'); 
+
+INSERT INTO admin(user_id)
+VALUES('input1');
+
+INSERT INTO customer_id(payment_info, card_number, cvv, zip_code, user_id)
+VALUES ('input1', 'input2','input3', 'input4','input5');
+
+INSERT INTO airline(airline_name, airline_country, airline_state, airline_city, airline_contact)
+VALUES ('input1', 'input2', 'input3', 'input4', 'input5');
+
+INSERT INTO airpot(airport_code, airport_city, airport_country)
+VALUES ('input1', 'input2', 'input3');
+
+INSERT INTO route(route_name, end_point, start_point, airport_code)
+VALUES ('input1', 'input2', 'input3','input4');
+
+INSERT INTO flight(fight_No, seat_left, dept_date_time, arriv_date_time, aircraft_type, route_name, airline_name, arriv_airportcode, dept_airportcode)
+VALUES('input1','input2', 'input3', 'input4', 'input5', 'input6', 'input7','input8', 'input9');
+
+INSERT INTO flight_filters(first_class_cost, buisness_class_cost, premium_economy_cost, economy_cost, flight_No)
+VALUES('input1','input2', 'input3', 'input4', 'input5');
+
+INSERT INTO reservation(reseravtion_number, seat_id, check_in, carry_on, reservation_date, route_name, flight_No)
+VALUES('input1', 'input2', 'input3', 'input4', 'input5', 'input6', 'input7');
+
+INSERT INTO airline_ratings(ratings, airline_name)
+VALUES('input1', 'input2');
+
+INSERT INTO dispute(ref_num, ref_type, user_id, user_id)
+VALUES('input1','input2', 'input3', 'input4');
+
+INSERT INTO consults (ref_num, user_id)
+VALUES('input1', 'input2');
+
+
+--DELTE STATEMENTS
+DELETE FROM 'table name'
+WHERE 'condition or all';
+--MODIFY STATEMENTS
+UPDATE 'table name'
+SET 'select column/row and update to new value';
+
+
+-- Filter Commands
+-- These commands will be sequential based on what the user wants
+--Input_array and Inputs will be decided by the user when using the website
+
+-- Cost Range Command
+SELECT ticket_cost
+FROM flight_filters
+WHERE ticket_cost BETWEEN input1 and input2;
+
+-- Seat Type
+
+SELECT seat_type
+FROM flight_filters
+WHERE seat_type IN (Input_array);
+
+--Stops
+--Will most likely work through website code to determine what flights stop where and how they can make a multi-flight trip
+
+SELECT stops 
+FROM flight_trips
+WHERE stops IN (Input_array);
+
+-- Take Off TIME
+SELECT dept_date_time
+FROM flight
+WHERE dept_date_time BETWEEN input1 and input2;
+
+-- Landing TIME
+SELECT arriv_date_time
+FROM flight
+WHERE arriv_date_time BETWEEN input1 and input2;
+
+-- Airlines
+SELECT airline_name
+FROM flight
+WHERE airline_name IN (input_array);
+
+--Aircraft
+SELECT aircraft_type
+FROM flight
+WHERE aircraft_type IN (input_array);
+
+--Where-Where
+SELECT dept_airportcode, arriv_airportcode
+FROM flight
+WHERE dept_airportcode = input1 and arriv_airportcode = input2;
+
+--Where-Where and WHEN
+SELECT dept_date_time, arriv_date_time
+FROM(SELECT dept_airportcode, arriv_airportcode
+    FROM flight
+    WHERE dept_airportcode = input1 and arriv_airportcode = input2)
+WHERE dept_date_time = input1 and arriv_date_time = input2;
+
+--Where-Where and When Extended
+SELECT dept_date_time, arriv_date_time
+FROM(SELECT dept_airportcode, arriv_airportcode
+    FROM flight
+    WHERE dept_airportcode = input1 and arriv_airportcode = input2)
+WHERE (dept_date_time > input1 and arriv_date_time > input2) or(dept_date_time < input1 and arriv_date_time < input2) or (dept_date_time > input1 and arriv_date_time < input2) or (dept_date_time < input1 and arriv_date_time > input2);
+
+--Getting Customer UserID DATA
+SELECT user_id
+FROM dispute
+WHERE user_id = 'input1';
+
+SELECT user_id
+FROM reservation
+WHERE user_id = 'input1';
+
+SELECT user_id
+FROM consults
+WHERE user_id = 'input1';
+
+
+--Where-Where 1 STOP
+/* 
+Array 1 = All fights that land in Delhi but not fly from Calgary
+Array 2 = All fights that fly from Calgary but don't land in Delhi
+Union between the two to find Array 1 dept = Array 2 arrival and Array1 airline_name = Array2 airline_name
+Display those flights together as a trip
+*/
+
+--WHERE-WHERE 2 STOP
+/*
+Make this into a loop to look for 3 stops or more. We can also limit it to 2 stops if necessary
+Array 1 = All flights that land in Delhi but not fly from Calgary
+Array 2 = All flights that fly from Calgary but don't land in Delhi
+Array 3 = Find flights that take off Array 1 arrival to places other than DELHI
+Array 4 = Find fights from Array 3 arrival to DELHI
+Display flights selected for all those as a trip
+*/
+
+
+
+
+
+
+
