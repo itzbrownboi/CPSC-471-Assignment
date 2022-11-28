@@ -1,0 +1,67 @@
+
+#title{
+  /* background-color: #AAC4FF; */
+  font-weight: bold;
+
+
+}
+.container-fluid{
+  padding: 3% 15%;
+}
+/*Title Image*/
+#titleimg{
+  width: 60%;
+  /* transform: rotate25deg); */
+}
+#ip{
+  padding-left: 10%;
+}
+#search-flight{
+  padding: 3% 15%;
+  align-content: center;
+  /* background-color:#3A8891; */
+}
+#tab1{
+  background-color:#497174;
+  align-items: center;
+}
+h1{
+  color: #fff;
+  font-family: "Montserrat-Black";
+  font-size: 3rem;
+  font-weight: bold;
+
+}
+h2{
+  font-family: "Montserrat-Bold";
+  font-size: 3rem;
+  line-height: 1.5;
+  font-weight: bold;
+
+}
+body{
+  text-align:left;
+
+}
+p{
+  color: grey;
+}
+.navbar-brand{
+
+  font-family: "Work Sans";
+  font-size: 2.5rem;
+  font-weight: bold;
+
+}
+.navbar{
+
+  padding-bottom: 4.5rem;
+}
+.nav-item{
+  padding: 0 18px;
+}
+.nav-link{
+  font-size: 1.2rem;
+  font-family: "Nunito"
+
+}
