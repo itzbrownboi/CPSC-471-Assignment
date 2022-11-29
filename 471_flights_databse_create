@@ -18,7 +18,7 @@ CREATE TABLE administrator (
 
 CREATE TABLE customer (
 	payment_info VARCHAR(6),
-	card_number INT,
+	card_number VARCHAR(16),
 	cvv INT,
 	zip_code VARCHAR(7),
 	customer_id VARCHAR(50),
