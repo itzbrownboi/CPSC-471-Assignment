@@ -204,3 +204,15 @@
   transition:background 1s;
  
 }
+.Virtual-Card1{
+    
+    position: relative;
+    top: -170%;
+    left:138%;
+}
+.Virtual-Card2{
+    
+    position: relative;
+    top: -211.2%;
+    left:240%;
+}
