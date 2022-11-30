@@ -4,7 +4,9 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
   }
-
+#details{
+    z-index: 1000;
+}
 
   
   .container{
@@ -31,7 +33,7 @@
   .form-box{
     width: 90%;
     max-width: 450px;
-    height: 80%;
+    height: 95%;
     position: absolute;
     top: 50%;
     left: 20%;
@@ -45,7 +47,7 @@
     width: 90%;
     max-width: 450px;
     position: absolute;
-    top: 60%;
+    top: 52%;
     left: 50%;
     right: 50%;
     align-items: center;
@@ -150,10 +152,10 @@
     transition:background 1s;
 }
 .button-Admin{
-  width:200%;
+  width:215%;
   position: relative;
-  top:100px;
-  right:-5px;
+  top:-18%;
+  right:10px;
   display: flex;
   justify-content: space-between;
 }
@@ -200,4 +202,5 @@
   outline: 0;
   cursor: pointer;
   transition:background 1s;
+ 
 }
