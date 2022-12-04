@@ -17,7 +17,7 @@
         <h1 id="title">
             Payment Method
         </h1>
-        <form>
+        <form method="post" action="payment.php">
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-solid fa-user"></i>
@@ -25,11 +25,11 @@
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type = "email" placeholder="example@example.com">
+                    <input name = "txtEmail" type = "email" placeholder="example@example.com">
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-lock"></i>
-                    <input type = "Card Number" placeholder="Card Number:xxxx xxxx xxxx xxxx">
+                    <input name = "txtCardNumber" type = "Card Number" placeholder="Card Number:xxxx xxxx xxxx xxxx">
                     <img src="cards.pnj.webp" alt="" width="100">
                 </div>
                 <div class="input-card1">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="input-card2">
                     
-                    <input type = "Card Number" id="details" placeholder="CVV">
+                    <input name = "CVV" type = "Card Number" id="details" placeholder="CVV">
                 </div>
                 <div class ="Billing">
                     <h1 id="title-1">
@@ -58,7 +58,7 @@
                     
                 </div>
                 <div class="input-card3">
-                    <input type = "Postal" placeholder="Postal Code" >
+                    <input name = "txtZipCode" type = "Postal" placeholder="Postal Code" >
                     
                 </div>
                 <div class="button-Admin">

@@ -17,33 +17,32 @@
         <h1 id="title">
             Sign Up
         </h1>
-        <form>
+        <form method="post" action="signUp.php">
             <div class="input-group">
                 <div class="input-field" id="nameField">
                     <i class="fa-regular fa-user"></i>
-                    <input type = "text" placeholder="FirstName">
+                    <input name = "txtFName" type = "text" placeholder="FirstName">
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-user" id="nameField"></i>
-                    <input type = "text" placeholder="LastName">
+                    <input name = "txtLName" type = "text" placeholder="LastName">
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type = "email" placeholder="Email">
+                    <input name = "txtEmail" type = "email" placeholder="Email">
                 </div>
                 <div class="input-field">
                     <i class="fa-solid fa-lock-open"></i>
-                    <input type = "password" placeholder="Password">
+                    <input name = "txtPassword" type = "password" placeholder="Password">
                 </div>
                 <div class="input-field">
-                    <i class="fa-regular fa-lock" id="nameField"></i>
-                    <input type = "password" placeholder="Re-Password">
+                    <i class="fa-regular fa-lock" id="nameField" ></i>
+                    <input name = "txtRePassword" type = "password" placeholder="Re-Password" required>
                 </div>
                 <!-- <p>Forgot Password <a href="#">Click Here!</a></p>      for forget password in signing in -->
             </div>
             <div class="button-field">
-                <button type="Button" id="signInButton" >Sign-In</button>
-                <button type="Button" id = "signUpButton" >Sign-Up</button>
+                <button type="submit" id = "signUpButton" >Sign-Up</button>
             </div>
             
         </form>
