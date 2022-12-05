@@ -27,6 +27,13 @@ $newRefrennceSQL = "INSERT INTO disputes (reference_num, ref_type, administrator
 $result2 = mysqli_query($con, $newRefrennceSQL);
 $display2 = mysqli_fetch_array($result2);
 
+//Delete Dispute if required
+
+//Need if statement from HTML to determine whether this is ran or not
+//Need insert from HTML about what refrence_num the customer is deleting
+$delRefrennceSQL = "DELETE FROM disputes WHERE $refIDDelete == refrence_num";
+$result3 = mysqli_query($con, $delRefrennceSQL);
+$display2 = mysqli_fetch_array($result3);
 
 
 
