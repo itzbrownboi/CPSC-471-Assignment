@@ -54,7 +54,7 @@ else
    
     echo '<script type="text/javascript">';
     echo  'alert("Registration Successful");';
-    echo 'window.location.replace("http://localhost/User_SignIn.php");';
+    echo 'window.location.replace("http://localhost/User_SignIn.html");';
     echo "</script>";
       
 }

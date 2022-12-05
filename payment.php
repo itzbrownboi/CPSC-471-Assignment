@@ -30,7 +30,7 @@ if(is_array($row))
     $sql2 = "INSERT INTO customer (customer_id, payment_info, card_number, cvv, zip_code) VALUES ('$txtEmail', NULL, '$txtCardNumber', '$txtCVV', '$txtZipCode')";
     $result2 = mysqli_query($con, $sql2);
     //Go to Reservation page here
-    echo 'window.location.replace("http://localhost/User_signIn.php");';
+    //echo 'window.location.replace("http://localhost/User_signIn.html");';
 }
 
 //Registers user if not already registered
@@ -38,7 +38,7 @@ else
 {  
     echo '<script type="text/javascript">';
     echo  'alert("Please sign in first!");';
-    echo 'window.location.replace("http://localhost/User_SignIn.php");';
+    echo 'window.location.replace("http://localhost/User_SignIn.html");';
     echo "</script>";
       
 }

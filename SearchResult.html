@@ -49,24 +49,25 @@
       </div>
     </div>
   </section>
-  
-  
+  <form method="post" action="flightsearch.php">
    <!-- Radio Buttons -->
       <div class="container-fluid" style="padding-bottom: 22%;">
         <div class="row">
           <div id="tab1" class="col-lg-12  p-4 rounded-1">
             <div class="d-flex flex-column">
               <div class="d-flex align-items-center text-white fw-bold">
-                <div >
-                  <input type="radio" id="Roundtrip" name="Roundtrip" value="Roundtrip"checked>
-                  <label style = "color: black;" for="huey">Roundtrip</label>
+                <div class="form-check col-md-3" style="padding-left: 8%;">
+                  <input class="form-check-input" type="radio" name="Roundtrip" id="Roundtrip">
+                  <label style = "color: black;" class="form-check-label" for="flexRadioDefault1">
+                    Roundtrip
+                  </label>
                 </div>
-
-                <div>
-                  <input type="radio" id="OneWay" name="OneWay" value="OneWay">
-                  <label style = "color: black;" for="OneWay">OneWay</label>
+                <div class="form-check col-md-3">
+                  <input class="form-check-input" type="radio" name="OneWay" id="OneWay" checked>
+                  <label style = "color: black;" class="form-check-label" for="flexRadioDefault2">
+                    One Way
+                  </label>
                 </div>
-                  
                 <!-- FLIGHT CLASS -->
                 <div style = "padding-left:25%; ">
                   <fieldset>
@@ -124,22 +125,17 @@
                     <label style = "color: black;"for="return">Return date:</label>
                     <input name="return" type="date" class="form-control date" id="return" placeholder="mm/dd/yyy" required="" onchange="this.form.()">
                   </div>
-                  
-              
                   <!-- RETURN END -->
                 </div>
-              </form>
-              <!-- <div id = "search" class="col-md-4">
-                <button type = "submit" id = "searchbtn" class= "btn btn-dark fw-bold btn-lg inp-width">Search</button>
-              </div> -->
-            </div>
-          
-          
+              </div>
+              <div id = "search" class="col-md-4">
+                <div class= "btn btn-dark fw-bold btn-lg inp-width">Search</div>
+              </div>
             </div>
           </div>
         </div>
-      
-</body>
+      </form>
+
       </div>
     </div>
   </div>
