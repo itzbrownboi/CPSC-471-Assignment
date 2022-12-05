@@ -9,44 +9,30 @@ if (mysqli_connect_errno($con))
 
 $txtCustomer_ID = $_POST['txtCustomer_ID'];
 $txtRefID = NULL;
-$RefIDSQL = "SELECT * FROM refrences";
-$tempresult =
-if(is_array($tempResult))
+$RefIDSQL = "SELECT reference_num FROM disputes";
+$tempresult = mysqli_query($con, $RefIDSQL);
+$tempRow = mysqli_fetch_array($tempresult);
+// The RefID should do a random number and if it is already take, it should come up with anew random number. Help me if you can
+//If y'all can figure it out let me know
 
-$txtRefId = rand();
+//Display current status of arrays given users username
+$currentRefrencesSQL = "SELECT reference_num, ref_type, customer_id FROM dispute WHERE customer_id == '$txtCustomer_ID ";
+$result = mysqli_query($con, $currentRefrencesSQL);
+$display = mysqli_fetch_array($result);
+
+//Insert additonal Dispute if required
+
+//Need if statement from HTML to determine whether this is ran or not.
+$newRefrennceSQL = "INSERT INTO disputes (reference_num, ref_type, administrator_id, customer_id) VALUES ('$txtRefID', '$txtRefType', NULL, '$txtCustomer_ID')";
+$result2 = mysqli_query($con, $newRefrennceSQL);
+$display2 = mysqli_fetch_array($result2);
 
 
-// get the post records
-$txtEmail = $_POST['txtEmail'];
-$txtCardNumber = $_POST['txtCardNumber'];
-$txtCVV = $_POST['txtCVV'];
-$txtZipCode = $_POST['txtZipCode'];
-
-// database insert SQL code
 
 
-//Check if user email is already registered
-$sql = "SELECT * FROM end_user WHERE user_email = '$txtEmail' ";
-$result = mysqli_query($con, $sql);
-$row = mysqli_fetch_array($result);
 
-if(is_array($row))
-{   
-    $sql2 = "INSERT INTO customer (customer_id, payment_info, card_number, cvv, zip_code) VALUES ('$txtEmail', NULL, '$txtCardNumber', '$txtCVV', '$txtZipCode')";
-    $result2 = mysqli_query($con, $sql2);
-    //Go to Reservation page here
-    //echo 'window.location.replace("http://localhost/User_signIn.html");';
-}
 
-//Registers user if not already registered
-else
-{  
-    echo '<script type="text/javascript">';
-    echo  'alert("Please sign in first!");';
-    echo 'window.location.replace("http://localhost/User_SignIn.html");';
-    echo "</script>";
-      
-}
+
 
 
 //close db
