@@ -43,7 +43,7 @@
     color:rgb(74, 7, 56) ;
     position: absolute;
     left:10%;
-    top: 40%;
+    top: 48%;
 }
 .container h3{
     text-align: left;
@@ -96,7 +96,7 @@
     margin-left: -9px;
     color: #999;
     position: absolute;
-    top:45%;
+    top:52%;
   }
   .input-field-2{
     width: 75%;
@@ -108,7 +108,7 @@
     margin-left: -9px;
     color: #999;
     position: absolute;
-    top:55%;
+    top:60%;
   }
   .input-field-3{
     width: 75%;
@@ -120,7 +120,7 @@
     margin-left: -9px;
     color: #999;
     position: absolute;
-    top:65%;
+    top:68%;
   }
   input{
     width:100%;
@@ -138,7 +138,7 @@
     align-items: center;
     position: relative;
     right:3%;
-    top:50%;
+    top:40%;
   }
   .input-card2{
     background: #e5e0e0;
@@ -149,7 +149,7 @@
     align-items: center;
     position: relative;
     left:48%;
-    top:34.5%;
+    top:26.5%;
   }
 
 .SideBar{
@@ -259,7 +259,7 @@
   .form-box{
     width: 90%;
     max-width: 450px;
-    height: 80%;
+    height: 90%;
     position: absolute;
     top: 55%;
     left: 52%;
