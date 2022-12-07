@@ -24,6 +24,16 @@
     color:rgb(238, 240, 247) ;
 
   }
+  .navbar-brand{
+    color: black;
+    position: absolute;
+    left:42%;
+    top:0%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: none;
+  }
   .form-box{
     width: 90%;
     max-width: 450px;
