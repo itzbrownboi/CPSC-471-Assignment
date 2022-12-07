@@ -7,6 +7,7 @@
 }
 .container-fluid{
   padding: 3% 15%;
+  
 }
 /*Title Image*/
 #titleimg{
@@ -22,11 +23,12 @@
   /* background-color:#3A8891; */
 }
 #tab1{
-  background-color:#497174;
+  background-color:#fbfefe;
   align-items: center;
 }
 h1{
-  color: #fff;
+  color: rgb(15, 0, 0);
+  
   font-family: "Montserrat-Black";
   font-size: 3rem;
   font-weight: bold;
@@ -44,12 +46,15 @@ body{
 
 }
 p{
-  color: grey;
+  color: rgb(7, 0, 0);
 }
 .navbar-brand{
-
-  font-family: "Work Sans";
-  font-size: 2.5rem;
+  color: black;
+  position: absolute;
+  left:37%;
+  top:0%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 50px;
   font-weight: bold;
 
 }
@@ -63,8 +68,85 @@ p{
 .nav-link{
   font-size: 1.2rem;
   font-family: "Work Sans";
-  color: white;
+  color: rgb(4, 3, 3);
 }
 #search{
   padding-left: 77.5%;
+}
+.Trip1{
+  color: rgb(7, 0, 0);
+  position: relative;
+  left:-5%;
+}
+.Trip2{
+  color: rgb(7, 0, 0);
+}
+.row h1{
+  font-family: Marker felt, fantasy;
+}
+.Flight{
+  color: rgb(7, 0, 0);
+  font-weight: bold;
+  position: absolute;
+  top:54%;
+  left:18%;
+
+}
+.Flight button{
+  flex-basis: 48%;
+  background:#09145d ;
+  color:#fff;
+  height: 40px;
+  border-radius: 20px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition:background 1s;
+}
+.dropdown1{
+  color: black;
+  position: absolute;
+  top:40%;
+  left: 58%;
+  height:10vh;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
+.dropdown2{
+  color: black;
+  position: absolute;
+  top:40%;
+  left: 66%;
+  height:10vh;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
+.dropdown3{
+  color: black;
+  position: absolute;
+  top:40%;
+  left: 75%;
+  height:10vh;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
+.dropdown1 input[type='number']{
+  width: 60px;
+} 
+.dropdown2 input[type='number']{
+  width: 60px;
+} 
+.dropdown3 input[type='number']{
+  width: 60px;
+} 
+.plane{
+  position: absolute;
+  top:40%;
+  left: 20%;
 }
