@@ -16,6 +16,8 @@ $txtEmail = $_POST['txtEmail'];
 $txtCardNumber = $_POST['txtCardNumber'];
 $txtCVV = $_POST['txtCVV'];
 $txtZipCode = $_POST['txtZipCode'];
+$txtExpiryDate = $_POST['txtExpiryDate'];
+$txtBillingAdr = $_POST['txtBillingAdr'];
 
 // database insert SQL code
 
