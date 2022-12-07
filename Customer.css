@@ -118,4 +118,13 @@
     top:0%;
   }
 
-
+  .navbar-brand{
+    color: black;
+    position: absolute;
+    left:42%;
+    top:0%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: none;
+  }
