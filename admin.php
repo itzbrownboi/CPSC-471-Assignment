@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Admin Page </title>
+  </head>
+  
+<body>
+
 <?php
 
 $con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
@@ -15,61 +23,45 @@ $txtAdminId = $_POST['txtAdminId'];
 
 
 $siteStatsCustomerSQL = "SELECT COUNT(customer_id) FROM customer";
-$siteStatsDisputeSQL = "SELECT COUNT(dispute_number) FROM dispute";
+$siteStatsDisputeSQL = "SELECT COUNT(ref_num) FROM dispute";
+$siteDisputesSQL = "SELECT * FROM dispute";
 $addConsultSQL = "INSERT INTO consults (ref_num, administrator_id) VALUES ('$txtRefrenceID','$txtAdminID')";
-$disputeOutput = " SELECT * FROM dispute";
+$customerOutput = " SELECT * FROM customer";
 
 
-// insert in database 
-// if($trip){
+
     $result = mysqli_query($con, $siteStatsCustomerSQL);
     $result2 = mysqli_query($con, $siteStatsDisputeSQL);
     $result3 = mysqli_query($con, $addConsultSQL);
-    $result4 = mysqli_query($con, $disputeOutput);
+    $result4 = mysqli_query($con, $customerOutput);
+    $result5 = mysqli_query($con, $siteDisputesSQL);
+
     $row = mysqli_fetch_array($result);
     $row2 = mysqli_fetch_array($result2);
     $row3 = mysqli_fetch_array($result3);
     $row4 = mysqli_fetch_array($result4);
 
-    foreach($row as $value){
-        echo $value;
-        echo "\n";
-    }
-    <html>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="">Home</a>
-        <a class="nav-link" href="">Profile</a>
-      </li>
-    </ul>
-  </div>
-  </html>
-    foreach($row4 as $value4){
+    $row5 = mysqli_fetch_array($result5);
+
+    //echo $row2;
+    //echo $row2;
+    //echo $row3;
+    //echo count($row4);
+    foreach($row4[0] as $value4){
         echo $value4;
         echo "\n";
     }
-    foreach($row2 as $value2){
-        echo $value2;
-        echo "\n";
-    }
-    echo $row2;
-    echo $row3;
-    echo $row4;
+    
+    // foreach($row4 as $value2){
+    //     echo $value2;
+    //     echo "\n";
+    // }
+    // echo $row2;
+    // echo $row3;
+    // echo $row4;
 
     // header('Location:  http://localhost/SearchResult.php?row='.$row.'&row2='.$row2);
-    
-
-// }
-
-// if(){
-//     $result = mysqli_query($con, $oneWaySQL);
-//     $row = mysqli_fetch_array($result);
-
-// }
-
-
-
-mysqli_close($con);
-
 ?>
+</body>
+
+</html>

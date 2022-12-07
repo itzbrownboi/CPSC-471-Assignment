@@ -63,11 +63,11 @@
                 </a></div>";
         ?>
         <div class="SideBar">
-            <a class="main" href="#DashBoard">DashBoard</a>
+            <a class="main" href="http://localhost/Admin_page.php">DashBoard</a>
             <a href="http://localhost/Admin_page_customers.php">Customer</a>
             <a href="http://localhost/Admin_page_disputes.php">Disputes</a>
             <div class="Logout">
-                <a href="http://localhost/SignIn_Admin.html">Log-Out</a>
+                <a href="http://localhost/SignIn_Admin.html">Log-Out</a> 
             </div>
             <div class="Admin">
                 Admin Page

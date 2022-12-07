@@ -8,16 +8,16 @@ if (mysqli_connect_errno($con))
 }
 
 $txtEmail = $_POST['txtEmail'];
-$txtPassword = $_POST['txtPassword'];
-
-
-// get the post records
-$txtEmail = $_POST['txtEmail'];
-$txtCardNumber = $_POST['txtCardNumber'];
+$txtcardName = $_POST['txtcardName'];
+$txtCardNumber = $_POST['txtCardNumber']; 
+$txtmonyear = $_POST['txtmonyear'];
 $txtCVV = $_POST['txtCVV'];
+$txtCountry = $_POST['txtCountry'];
+$txtCity = $_POST['txtCity'];
+$txtAddress = $_POST['txtAddress'];
 $txtZipCode = $_POST['txtZipCode'];
-$txtExpiryDate = $_POST['txtExpiryDate'];
-$txtBillingAdr = $_POST['txtBillingAdr'];
+
+
 
 // database insert SQL code
 
@@ -27,23 +27,37 @@ $sql = "SELECT * FROM end_user WHERE user_email = '$txtEmail' ";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($result);
 
-if(is_array($row))
-{   
-    $sql2 = "INSERT INTO customer (customer_id, payment_info, card_number, cvv, zip_code) VALUES ('$txtEmail', NULL, '$txtCardNumber', '$txtCVV', '$txtZipCode')";
-    $result2 = mysqli_query($con, $sql2);
-    //Go to Reservation page here
-    //echo 'window.location.replace("http://localhost/User_signIn.html");';
+$sql2 = "SELECT * FROM customer WHERE customer_id = '$txtEmail' ";
+$result2 = mysqli_query($con, $sql2);
+$row2 = mysqli_fetch_array($result2);
+
+if(!is_array($row))
+{ 
+    echo '<script type="text/javascript">';
+    echo  'alert("Please enter registered email");';
+    echo 'window.location.replace("http://localhost/payment.html");';
+    echo "</script>";
+}
+else{
+    if(!is_array($row2)){
+
+        $sql2 = "INSERT INTO customer (customer_id, payment_info, card_number, cvv, zip_code,monthyear) VALUES ('$txtEmail','$txtCardName', '$txtCardNumber', '$txtCVV', '$txtZipCode', '$txtmonyear')";
+        $result2 = mysqli_query($con, $sql2);
+        //Go to Reservation page here
+        echo '<script type="text/javascript">';
+        echo  'alert("Payment Successful");';
+        echo 'window.location.replace("http://localhost/TicketConfirm.html");';
+        echo "</script>";
+    }
+    else{
+        echo '<script type="text/javascript">';
+        echo  'alert("Payment Successful");';
+        echo 'window.location.replace("http://localhost/TicketConfirm.html");';
+        echo "</script>";
+    }
+    
 }
 
-//Registers user if not already registered
-else
-{  
-    echo '<script type="text/javascript">';
-    echo  'alert("Please sign in first!");';
-    echo 'window.location.replace("http://localhost/User_SignIn.html");';
-    echo "</script>";
-      
-}
 
 
 //close db

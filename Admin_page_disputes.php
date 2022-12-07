@@ -20,8 +20,8 @@
     
    
     $disputeOutput = " SELECT * FROM dispute";
-    $result4 = mysqli_query($con, $disputeOutput);
-    $row4 = mysqli_fetch_array($result4);
+    $result = mysqli_query($con, $disputeOutput);
+    //$row4 = mysqli_fetch_array($result);
     
     
 ?>
@@ -32,7 +32,7 @@
             Air Connect
         </h1>
         <?php
-        echo $row[0];
+        
         echo "<div class= dispute>
             <table style=width:80%>
             <tr>
@@ -40,20 +40,23 @@
             <th>Dispute type</th>
             <th>Customer ID</th>
             </tr>";
-            
-            foreach($row4[0] as $value2){
-                echo"<tr>
-                <td> ".$value2." </td>
-                <td> ".$value2." </td>
-                <td> ".$value2." </td>
-                </tr>";
-            
 
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                  
+                    echo"<tr>
+                    <td> " . $row["ref_num"]. " </td>
+                    <td> ". $row["ref_type"]. " </td>
+                    <td> ". $row["customer_id"]. " </td>
+                    </tr>";
+
+                }
             }
             echo" </table></div>";        
         ?>
         <div class="SideBar">
-            <a class="main" href="#DashBoard">DashBoard</a>
+            <a class="main" href="http://localhost/Admin_page.php">DashBoard</a>
             <a href="http://localhost/Admin_page_customers.php">Customer</a>
             <a href="http://localhost/Admin_page_disputes.php" color = "purple">Disputes</a>
             <div class="Logout">

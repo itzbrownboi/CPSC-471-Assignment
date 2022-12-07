@@ -22,8 +22,6 @@
     $siteCustomerSQL = "SELECT * FROM customer";
     
     $result5 = mysqli_query($con, $siteCustomerSQL);
-        
-    $row5 = mysqli_fetch_array($result5);
 
         
 
@@ -36,23 +34,30 @@
         </h1>
         <?php
         
-        echo "<div class= dispute>
-            <table style=width:80%>
-            <tr>
-            <th>Customer ID</th>
-            <th>Payment Info</th>
-            <th>Zip Code</th>
-            </tr>
-            <tr>
-            <td> ".$row5[4]." </td>
-            <td> ".$row5[0]." </td>
-            <td> ".$row5[3]." </td>
-            </tr>
-        </table></div>";
+            echo "<div class= dispute>
+                <table style=width:80%>
+                <tr>
+                <th>Customer ID</th>
+                <th>Payment Info</th>
+                <th>Zip Code</th>
+                </tr>";
+                if ($result5->num_rows > 0) {
+                    // output data of each row
+                    while($row5 = $result5->fetch_assoc()) {
+                    
+                        echo"<tr>
+                        <td> " . $row5["customer_id"]. " </td>
+                        <td> ". $row5["payment_info"]. " </td>
+                        <td> ". $row5["zip_code"]. " </td>
+                        </tr>";
+
+                    }
+                }
+            echo "</table></div>";
             
         ?>
         <div class="SideBar">
-            <a class="main" href="#DashBoard">DashBoard</a>
+            <a class="main" href="http://localhost/Admin_page.php">DashBoard</a>
             <a href="http://localhost/Admin_page_customers.php">Customer</a>
             <a href="http://localhost/Admin_page_disputes.php">Disputes</a>
             <div class="Logout">

@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
 
 if(is_array($row))
 {    
-    header('location: http://localhost/index.html'); 
+    header('location: http://localhost/Home.html'); 
 }
 else
 {

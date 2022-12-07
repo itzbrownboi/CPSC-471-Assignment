@@ -1,65 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content="width=device-wifth, initial-scale=1.0">
+        <title> Customer Page</title>
+        <link rel ="stylesheet" href="Admin.css">
+        <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
+     
+      </head>
+<body>
+
 <?php
 
-$con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
+    $con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
 
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
+    if (mysqli_connect_errno($con))
+    {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
-$txtCustomer_ID = $_POST['txtCustomer_ID'];
-$txtRefID = NULL;
-$RefIDSQL = "SELECT reference_num FROM disputes";
-$tempresult = mysqli_query($con, $RefIDSQL);
-$tempRow = mysqli_fetch_array($tempresult);
-// The RefID should do a random number and if it is already take, it should come up with anew random number. Help me if you can
-//If y'all can figure it out let me know
-
-
-
-//Display current status of arrays given users username
-function current_status() {
-$currentRefrencesSQL = "SELECT reference_num, ref_type, customer_id FROM dispute WHERE customer_id == '$txtCustomer_ID ";
-$result = mysqli_query($con, $currentRefrencesSQL);
-$display = mysqli_fetch_array($result);
-  
-}
-//Insert additonal Dispute if required
-
-//Need if statement from HTML to determine whether this is ran or not.
-function insert_dispute() {
-$newRefrennceSQL = "INSERT INTO disputes (reference_num, ref_type, administrator_id, customer_id) VALUES ('$txtRefID', '$txtRefType', NULL, '$txtCustomer_ID')";
-$result2 = mysqli_query($con, $newRefrennceSQL);
-$display2 = mysqli_fetch_array($result2);
-
-echo '<script type="text/javascript">';
-echo  'alert("Dispute added");';
-echo 'window.location.replace("http://localhost/Customer.html");';
-echo "</script>";
-
-}
-function cancel_dispute(){
-    //Delete Dispute if required
-
-    //Need if statement from HTML to determine whether this is ran or not
-    //Need insert from HTML about what refrence_num the customer is deleting
-    $delRefrennceSQL = "DELETE FROM disputes WHERE $refIDDelete == refrence_num";
-    $result3 = mysqli_query($con, $delRefrennceSQL);
-    $display2 = mysqli_fetch_array($result3);
-
-    echo '<script type="text/javascript">';
-    echo  'alert("Dispute deleted");';
-    echo 'window.location.replace("http://localhost/Customer.html");';
-    echo "</script>";
-}
+    $txtRefrenceId = $_POST['txtRefrenceId'];
+    // $txtDisputeInfo = $_POST['txtRefrenceId'];
+    $txtAdminId = $_POST['txtAdminId'];
 
 
 
 
+    $siteStatsCustomerSQL = "SELECT COUNT(customer_id) FROM customer";
+    $siteStatsDisputeSQL = "SELECT COUNT(ref_num) FROM dispute";
+    $siteDisputesSQL = "SELECT * FROM dispute";
+    $addConsultSQL = "INSERT INTO consults (ref_num, administrator_id) VALUES ('$txtRefrenceID','$txtAdminID')";
+    $disputeOutput = " SELECT * FROM dispute";
 
 
 
-//close db
-mysqli_close($con);
+        $result = mysqli_query($con, $siteStatsCustomerSQL);
+        $result2 = mysqli_query($con, $siteStatsDisputeSQL);
+        $result3 = mysqli_query($con, $addConsultSQL);
+        $result4 = mysqli_query($con, $disputeOutput);
+        $result5 = mysqli_query($con, $siteDisputesSQL);
+        $row = mysqli_fetch_array($result);
+        $row2 = mysqli_fetch_array($result2);
+        $row3 = mysqli_fetch_array($result3);
+        $row4 = mysqli_fetch_array($result4);
+        $row5 = mysqli_fetch_array($result5);
+
+        
 
 ?>
+
+    
+    <div class="container">
+        <h1 class ="center">
+            Air Connect
+        </h1>
+        <?php
+            echo "<div class=Customer>
+                <a class=C1>Customers: " .$row[0]."
+                </a></div>";
+        
+            echo"<div class=Disputes>
+                <a class=D1>Disputes: " .$row2[0]."
+                </a></div>";
+        ?>
+        <div class="SideBar">
+            <a class="main" href="#DashBoard">DashBoard</a>
+            <a href="http://localhost/Admin_page_customers.php">Customer</a>
+            <a href="http://localhost/Admin_page_disputes.php">Disputes</a>
+            <div class="Logout">
+                <a href="http://localhost/SignIn_Admin.html">Log-Out</a> 
+            </div>
+            <div class="Admin">
+                Admin Page
+            </div>
+        </div>
+        
+    </div>";
+</body>
+<script>
+
+</script>
+
+</html>

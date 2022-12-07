@@ -9,60 +9,37 @@
       </head>
 <body>
     <div class="container">
-        <a class="navbar-brand" href="http://127.0.0.1:5501/index.html?Adults=9">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/Home.html">Air Connect</a>
         <div class="form-box">
             <h2 id="title">
-                Password
+                Update Password
             </h2>
-            <h6 id="title">
-                Payment Method
-            </h6>
-            <div class="input-field">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "Email" id = "Email" type = "email" placeholder="Email">
-            </div>
-            <div class="input-field">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "text" id = "text" type = "text" placeholder="Old Password">
-            </div>
-            <div class="input-field">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "text" id = "text" type = "text" placeholder="New Password">
-            </div>
-            <div class="button-field-1">
-                <button type="submit" name="signInButton" >Update</button>               
-            </div>
-            <div class="input-field-1">
-                <i class="fa-solid fa-user"></i>
-                <input type = "Name" placeholder="Name on the Card">
-            </div>
-            <div class="input-field-2">
-                <i class="fa-regular fa-envelope"></i>
-                <input name = "txtEmail" type = "email" placeholder="example@example.com">
-            </div>
-            <div class="input-field-3">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "txtCardNumber" type = "Card Number" placeholder="Card Number:xxxx xxxx xxxx xxxx">
-                <img src="cards.pnj.webp" alt="" width="100">
-            </div>
-            <div class="input-card1">
-                <input type = "text" id="details" placeholder="MM/YY">
+            
+            <form method="post" action="privacy.php">
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtEmail" id = "txtEmail" type = "email" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtOldP" id = "txtOldP" type = "password" placeholder="Old Password">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtNewP" id = "txtNewP" type = "password" placeholder="New Password">
+                </div>
                 
-            </div>
-            <div class="input-card2">
-                
-                <input name = "CVV" type = "Card Number" id="details" placeholder="CVV">
-            </div>
-            <div class="button-field">
-                <button type="submit" name="signInButton" >Update</button>               
-            </div>
+                <div class="button-field">
+                    <button type="submit" name="signInButton" >Update</button>               
+                </div>
+            </form>
         </div>
         <div class="SideBar">
-            <a class="main" href="http://127.0.0.1:5501/Customer.html">Profile</a>
-            <a href="http://127.0.0.1:5501/privacy.html">Privacy</a>
-            <a href="http://127.0.0.1:5501/Disputes.html">Disputes</a>
+            <a class="main" href="http://localhost/Customer.html">Profile</a>
+            <a href="http://localhost/privacy.html">Privacy</a>
+            <a href="http://localhost/Disputes.html">Disputes</a>
             <div class="Logout">
-                <a href="http://127.0.0.1:5501/User_SignIn.html">Log-Out</a>
+                <a href="http://localhost/User_SignIn.html">Log-Out</a>
             </div>
             <div class="User">
                 Customer Account 
@@ -83,4 +60,3 @@
       }
     }
   </script> -->
-

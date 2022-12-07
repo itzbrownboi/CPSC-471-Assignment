@@ -9,33 +9,35 @@
       </head>
 <body>
     <div class="container">
-        <a class="navbar-brand" href="http://127.0.0.1:5501/index.html?Adults=9">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/index.html?Adults=9">Air Connect</a>
         <div class="form-box">
             <h2 id="title">
                 Dispute
             </h2>
-            <div class="input-field">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "Email" id = "Email" type = "email" placeholder="Email">
-            </div>
-            <div class="input-field">
-                <i class="fa-regular fa-lock"></i>
-                <input name = "text" id = "text" type = "text" placeholder="Subject of Dispute">
-            </div>
-            <div class="input-field-1">
-                <i class="fa-sharp fa-solid fa-align-justify"></i>
-                <input name = "text" id = "text" type = "text" placeholder="Description">
-            </div>
-            <div class="button-field">
-                <button type="submit" name="Submit" >Submit</button>               
-            </div>
-            </div>
+            <form method="post" action = "Disputes.php">
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtEmail" id = "Email" type = "email" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtDisSubject" id = "txtDisSubject" type = "text" placeholder="Subject of Dispute">
+                </div>
+                <div class="input-field-1">
+                    <i class="fa-sharp fa-solid fa-align-justify"></i>
+                    <input name = "txtDescription" id = "txtDescription" type = "text" placeholder="Description">
+                </div>
+                <div class="button-field">
+                    <button type="submit" name="Submit" >Submit</button>               
+                </div>
+            </form>
+        </div>
         <div class="SideBar">
-            <a class="main" href="http://127.0.0.1:5501/Customer.html">Profile</a>
-            <a href="http://127.0.0.1:5501/privacy.html">Privacy</a>
-            <a href="http://127.0.0.1:5501/Disputes.html">Disputes</a>
+            <a class="main" href="http://localhost/Customer.html">Profile</a>
+            <a href="http://localhost/privacy.html">Privacy</a>
+            <a href="http://localhost/Disputes.html">Disputes</a>
             <div class="Logout">
-                <a href="http://127.0.0.1:5501/User_SignIn.html">Log-Out</a>
+                <a href="http://localhost/User_SignIn.html">Log-Out</a>
             </div>
             <div class="User">
                 Customer Account 
