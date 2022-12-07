@@ -18,15 +18,16 @@ $result = mysqli_query($con, $sql);
 
 $row = mysqli_fetch_array($result);
 
+
 if(is_array($row))
 {    
-    header('location: http://localhost/Home.html'); 
+    header('location: http://localhost/index.html'); 
 }
 else
 {
     echo '<script type="text/javascript">';
     echo  'alert("Wrong user name or password");';
-    echo 'window.location.replace("http://localhost/User_SignIn.php");';
+    echo 'window.location.replace("http://localhost/User_SignIn.html");';
     echo "</script>";
 }
 

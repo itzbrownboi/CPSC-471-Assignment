@@ -29,15 +29,15 @@
                     <input name = "txtPassword" id = "txtPassword" type = "password" placeholder="Password">
                 </div>
               
-                <p>Forgot Password <a href="http://127.0.0.1:5500/ResetPw.html">Click Here!</a></p>
+                <p>Forgot Password <a href="http://localhost/ResetPw.html">Click Here!</a></p>
                 <div class="button-Admin">
-                    <button type="Button" id="Admin">Admin Sign-In</button>
+                    <button type="button" id="Admin" onclick = "adminSign()">Admin Sign-In</button>
                 </div>
                 
             </div>
             <div class="button-field">
                 <button type="submit" name="signInButton" >Sign-In</button>               
-                <button type="Button" id = "signUpButton" onclick = "signUp()">Sign-Up</button>
+                <button type="button" id = "signUpButton" onclick = "signUp()">Sign-Up</button>
             </div>
             
         </form>
@@ -47,11 +47,15 @@
 
 <script>
 
-  function signUp() {
-    if(isset($_POST['signUpButton'])){
-        
-      window.location = "http://localhost/User_SignUp.html";
-    }
+  function signUp() {    
+    window.location = "http://localhost/User_SignUp.html";
+    
+  }
+
+  function adminSign() {
+    
+    window.location = "http://localhost/SignIn_Admin.html";
+
   }
 </script>
 

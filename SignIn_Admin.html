@@ -16,25 +16,25 @@
         <h1 id="title">
             Admin Sign In
         </h1>
-        <form>
+        <form method="post" action="SignInAdmin.php"></formmethod>
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-regular fa-envelope"></i>
-                    <input type = "email" placeholder="Email">
+                    <input name = "txtEmail" type = "email" placeholder="Email">
                 </div>
                 <div class="input-field">
                     <i class="fa-regular fa-lock"></i>
-                    <input type = "password" placeholder="Password">
+                    <input name = "txtPassword" type = "password" placeholder="Password">
                 </div>
               
-                <p>Forgot Password <a href="http://127.0.0.1:5500/ResetPw.html">Click Here!</a></p>
+                <p>Forgot Password <a href="http://localhost/Resetpw.html">Click Here!</a></p>
                 <div class="button-Admin">
                     <button type="Button" id="Customer">Customer Sign-In</button>
                 </div>
                 
             </div>
             <div class="button-field">
-                <button type="Button" id="signInButton" >Sign-In</button>
+                <button type="submit" id="signInButton" >Sign-In</button>
                 <button type="Button" id = "signUpButton" >Sign-Up</button>
             </div>
             
@@ -51,11 +51,11 @@
     let Customer=document.getElementById("Customer");
 
     signUpButton.onclick=function(){
-        location.href="http://127.0.0.1:5500/User_SignUp.html";
+        location.href="http://localhost/User_SignUp.html";
 
     }
     Customer.onclick=function(){
-        location.href="http://127.0.0.1:5500/User_SignIn.html";
+        location.href="http://localhost/User_SignIn.html";
     }
 </script>
 
