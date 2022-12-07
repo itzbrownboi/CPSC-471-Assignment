@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name = "viewport" content="width=device-wifth, initial-scale=1.0">
+    <title> Ticket Form</title>
+    <link rel ="stylesheet" href="TicketForm.css">
+    <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
+   
+    
+  </head>
+  <body>
+    <div class="container">
+        <a class="navbar-brand" href="http://127.0.0.1:5501/index.html">Air Connect</a>
+    <div class="form-box">
+        <h1 id="title">
+            Ticket Details
+        </h1>
+        <form method="post" action="signUp.php">
+            <div class="input-group">
+                <div class="input-field" id="nameField">
+                    <i class="fa-regular fa-user"></i>
+                    <input name = "txtFName" type = "text" placeholder="FirstName">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-user" id="nameField"></i>
+                    <input name = "txtLName" type = "text" placeholder="LastName">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input name = "txtEmail" type = "email" placeholder="Email">
+                </div>
+            </div>
+            <div class="button-field">
+                <button type="Next" id = "Next">Next</button>
+               
+            </div>
+            
+        </form>
+    </div>
+</div>
+<script>
+    let Next=document.getElementById("Next");
+
+    Next.onclick=function(){
+        
+
+        location.href="http://127.0.0.1:5501/payment.html";
+    }
+   
+    
+</script>
+
+  </body>
+</html>
