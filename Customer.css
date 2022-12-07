@@ -27,6 +27,47 @@
 
  
 }
+.container h2{
+    text-align: center;
+    font-size: 50px;
+    font-family: Marker felt, fantasy;
+    color:rgb(74, 7, 56) ;
+    position: absolute;
+    left:30%;
+    top: 5%;
+}
+.container h3{
+    text-align: left;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:rgb(74, 7, 56) ;
+    position: absolute;
+    left:5%;
+    top: 25%;
+ 
+}
+.container h4{
+    text-align: left;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:rgb(74, 7, 56) ;
+    position: absolute;
+    left:5%;
+    top: 45%;
+ 
+}
+
+.container h5{
+    text-align: left;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:rgb(74, 7, 56) ;
+    position: absolute;
+    left:5%;
+    top: 65%;
+ 
+}
+
 
 
 .SideBar{
@@ -65,7 +106,11 @@
     background-color: rgb(43, 16, 69);
     color: white;
 }
-.Admin{
+.SideBar a:after{
+    background-color: rgb(43, 16, 69);
+    color: white;
+}
+.User{
 
     font-size: 35px;
     
@@ -127,4 +172,16 @@
     font-size: 50px;
     font-weight: bold;
     text-decoration: none;
+  }
+  .form-box{
+    width: 90%;
+    max-width: 450px;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    transform: translate(-50%,-50%);
+    background: rgb(242, 242, 243);
+    padding: 50px 60px 70px;
+    text-align: center;
   }
