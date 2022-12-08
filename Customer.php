@@ -36,7 +36,6 @@ $customerReservationSQL = "SELECT * FROM reservation WHERE customer_ID = '$txtUs
         <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
      
       </head>
-
 <body>
     <div class="container">
         <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
