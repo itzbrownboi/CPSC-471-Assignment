@@ -1,28 +1,31 @@
 <?php
 
-$con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
-
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+try {
+    $mysqli = new mysqli("localhost", "root", "iamrootuser", "471project");
+    $mysqli->set_charset("utf8mb4");
+}catch(Exception $e) {
+    error_log($e->getMessage());
+    exit('Error connecting to database'); //Should be a message a typical user could understand
 }
+
 
 $txtEmail = $_POST['txtEmail'];
 $txtPassword = $_POST['txtPassword'];
 
-$sql = "SELECT * FROM end_user WHERE user_password = '$txtPassword' AND '$txtEmail' IN(SELECT administrator_id FROM administrator)  ";
-// $sql2 ="SELECT * FROM administrator WHERE administrator_id = '$txtEmail'";
+$sql = "SELECT * FROM end_user WHERE user_password = ? AND ? IN(SELECT administrator_id FROM administrator) ";
 
 
-// insert in database 
-$result = mysqli_query($con, $sql);
-//$result2 = mysqli_query($con, $sql2);
+$sth = $mysqli->prepare($sql);
+$sth->bind_param('ss', $txtPassword, $txtEmail);
+$sth->execute();
+
+
+$result = $sth->get_result();
+
+
 $row = mysqli_fetch_array($result);
-//$row2 = mysqli_fetch_array($result2);
-//echo $row[0];
-//$value = is_array($row);
-//$value2 = is_array($row2);
-//if($value && $value2)
+
+
 
 if(is_array($row))
 {    
@@ -37,6 +40,6 @@ else
 }
 
 
-mysqli_close($con);
+$sth->close();
 
 ?>

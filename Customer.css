@@ -187,7 +187,8 @@
     text-align: center;
   }
   table {
-    margin-left: 5%;
+    margin-left: -20%;
+    margin-right: 20%;
     margin-top: 60%;
     align-items: center;
     font-family: arial, sans-serif;

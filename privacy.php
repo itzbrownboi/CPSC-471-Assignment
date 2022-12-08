@@ -12,7 +12,7 @@ session_start();
       </head>
 <body>
     <div class="container">
-        <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/HomePage.php">Air Connect</a>
         <div class="form-box">
             <h2 id="title">
                 Update Password

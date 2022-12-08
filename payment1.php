@@ -8,6 +8,8 @@ if (mysqli_connect_errno($con))
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
+
+
 $txtEmail = $_POST['txtEmail'];
 $txtcardName = $_POST['txtcardName'];
 $txtCardNumber = $_POST['txtCardNumber']; 
@@ -19,12 +21,18 @@ $txtAddress = $_POST['txtAddress'];
 $txtZipCode = $_POST['txtZipCode'];
 
 
+// if($_SESSION['userID'] == $txtEmail){
 
+//     echo '<script type="text/javascript">';
+//     echo  'alert("Please enter registered email");';
+//     echo 'window.location.replace("http://localhost/payment.php");';
+//     echo "</script>";
+// }
 // database insert SQL code
 
 
 //Check if user email is already registered
-$sql = "SELECT * FROM end_user WHERE user_email = '$txtEmail' ";
+$sql = "SELECT * FROM end_user WHERE user_email = ':$txtEmail' ";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($result);
 
@@ -36,7 +44,7 @@ if(!is_array($row))
 { 
     echo '<script type="text/javascript">';
     echo  'alert("Please enter registered email");';
-    echo 'window.location.replace("http://localhost/payment.html");';
+    echo 'window.location.replace("http://localhost/payment.php");';
     echo "</script>";
 }
 else{

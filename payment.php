@@ -14,12 +14,12 @@ session_start();
   <body>
     <!-- body -->
     <div class="container">
-        <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/HomePage.php">Air Connect</a>
         <div class="form-box">
             <!-- <h1 id="title">
                 Payment Method
             </h1> -->
-            <form method="post" action="payment.php">
+            <form method="post" action="payment1.php">
                 <div class="input-group">
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>

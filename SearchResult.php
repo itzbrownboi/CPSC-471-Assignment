@@ -12,13 +12,13 @@ session_start();
 
 <?php
 
-    $con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
-
-    if (mysqli_connect_errno($con))
-    {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    }
-    
+try {
+    $mysqli = new mysqli("localhost", "root", "iamrootuser", "471project");
+    $mysqli->set_charset("utf8mb4");
+}catch(Exception $e) {
+    error_log($e->getMessage());
+    exit('Error connecting to database'); //Should be a message a typical user could understand
+}
         
 $txtDept_Date = $_POST['departure'];
 $txtArriv_Date = $_POST['return'];
@@ -86,8 +86,7 @@ $txtArriv_airport = $_POST['To'];
     $roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airportcode = '$txtDept_airport' AND arriv_airportcode = '$txtArriv_airport'";
     $roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airportcode = '$txtArriv_airport'  AND arriv_airportcode = '$txtDept_airport'";
     //$oneWaySQL = "SELECT * FROM flights WHERE user_email = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airport = '$txtArriv_airport'";
-
-    
+        
     $result = mysqli_query($con, $roundtripSQLDept);
     $result2 = mysqli_query($con, $roundtripSQLArriv);
     //$row = mysqli_fetch_array($result);
@@ -126,6 +125,7 @@ $txtArriv_airport = $_POST['To'];
                 while($row = $result->fetch_assoc()) {
                 
                     echo"<tr>
+                    <form method=post action = payment.php>
                     <td> " . $row["flight_number"]. " </td>
                     <td> ". $row["dept_date_time"]. " </td>
                     <td> ". $row["arriv_date_time"]. " </td>
@@ -136,7 +136,7 @@ $txtArriv_airport = $_POST['To'];
                     <td> ". $row["arriv_airportcode"]. " </td>
                     <td> ". $row["EcoSeatCost"]. " </td>
                     <td> <button class =btn btn-dark fw-bold btn-md inp-width type=submit name=selectBtn>Select</button> 
-                    
+                    </form>
                     
                     </tr>";
                 }
@@ -160,6 +160,7 @@ $txtArriv_airport = $_POST['To'];
                     <td> ". $row2["EcoSeatCost"]. " </td>
                     <td> <button onclick =signUp() class =btn btn-dark fw-bold btn-md inp-width type=submit name=selectBtn>Select</button> 
                     
+                    
                     </form>
                     </tr>";
                 }
@@ -168,8 +169,5 @@ $txtArriv_airport = $_POST['To'];
         ?>
     </div>
 </body>
-<script>
-
-</script>
 
 </html>

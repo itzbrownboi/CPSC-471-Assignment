@@ -38,7 +38,7 @@ $customerReservationSQL = "SELECT * FROM reservation WHERE customer_ID = '$txtUs
       </head>
 <body>
     <div class="container">
-        <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/HomePage.php">Air Connect</a>
         <div class="form-box">
             <h2 id="title">
                 Profile
@@ -66,6 +66,7 @@ $customerReservationSQL = "SELECT * FROM reservation WHERE customer_ID = '$txtUs
                             <td> " . $row["reservation_number"]. " </td>
                             <td> ". $row["flight_number"]. " </td>
                             <td> ". $row["route_name"]. " </td>
+                            <td> ". $row["reservation_date"]. " </td>
                             <td> ". $row["reservation_date"]. " </td>
                             </tr>";
     

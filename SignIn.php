@@ -2,21 +2,25 @@
 
 session_start();
 
-$con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
-
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+try {
+    $mysqli = new mysqli("localhost", "root", "iamrootuser", "471project");
+    $mysqli->set_charset("utf8mb4");
+}catch(Exception $e) {
+    error_log($e->getMessage());
+    exit('Error connecting to database'); //Should be a message a typical user could understand
 }
+
 
 $txtEmail = $_POST['txtEmail'];
 $txtPassword = $_POST['txtPassword'];
 
-$sql = "SELECT * FROM end_user WHERE user_email = '$txtEmail' AND user_password = '$txtPassword'";
+$sql = "SELECT * FROM end_user WHERE user_email = ? AND user_password = ?";
 
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("ss", $txtEmail, $txtPassword);
+$stmt->execute();
 
-// insert in database 
-$result = mysqli_query($con, $sql);
+$result = $stmt->get_result();
 
 $row = mysqli_fetch_array($result);
 
@@ -37,6 +41,6 @@ else
 }
  
 
-mysqli_close($con);
+$stmt->close();
 
 ?>
