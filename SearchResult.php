@@ -1,7 +1,12 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <a class="navbar-brand" href="http://localhost/Home.html">Air Connect</a>
+        <a class="navbar-brand" href="http://localhost/HomePage.php">Air Connect</a>
+        <link rel="stylesheet" href=" ">
       </head>
 <body>
 
@@ -14,33 +19,24 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
     
-    $txtDept_Date = $_POST['txtDept_Date'];
-    $txtArriv_Date = $_POST['txtArriv_Date'];
-    $txtDept_airport = $_POST['txtDept_airport'];
-    $txtArriv_airport = $_POST['txtArriv_airport'];
-    $trip = $_POST['txttrip'];
-    
-    if(isset($_POST['Roundtrip'])){
-        ;
-    }
-    else if(isset($_POST['OneWay'])){
-        ;
-    }
-    else{
-       ; //select round or OneWay
-    }
-    
-    
-    
-    
+        
+$txtDept_Date = $_POST['departure'];
+$txtArriv_Date = $_POST['return'];
+$txtDept_airport = $_POST['From'];
+$txtArriv_airport = $_POST['To'];
+
+
+
+
+ 
     if($txtDept_airport == $txtArriv_airport){
         echo '<script type="text/javascript">';
         echo  'alert("Both airports cannot be the same");';
-        echo 'window.location.replace("http://localhost/Home.html");';
+        echo 'window.location.replace("http://localhost/HomePage.php");';
         echo "</script>";
     }
     
-    //Departure parsing
+    // //Departure parsing
     if($txtDept_airport == "Calgary"){
         $txtDept_airport = "YYC";
     }
@@ -85,27 +81,25 @@
         $txtArriv_airport = "YEG";
     }
     
-    $roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airportcode = '$txtDept_airport'";
-    $roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airport = '$txtArriv_airport'  AND arriv_airport = '$txtDept_airport'";
-    $oneWaySQL = "SELECT * FROM flights WHERE user_email = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airport = '$txtArriv_airport'";
-    
-    
-    
-    // insert in database 
-    // if($trip){
-        $result = mysqli_query($con, $roundtripSQLDept);
-        $result2 = mysqli_query($con, $roundtripSQLArriv);
-        $row = mysqli_fetch_array($result);
-        $row2 = mysqli_fetch_array($result2);
-    
-        header('Location:  http://localhost/SearchResult.php?row='.$row.'&row2='.$row2);
-    
-    mysqli_close($con);
-    
-    
-?>
+
+
+    $roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airportcode = '$txtDept_airport' AND arriv_airportcode = '$txtArriv_airport'";
+    $roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airportcode = '$txtArriv_airport'  AND arriv_airportcode = '$txtDept_airport'";
+    //$oneWaySQL = "SELECT * FROM flights WHERE user_email = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airport = '$txtArriv_airport'";
 
     
+    $result = mysqli_query($con, $roundtripSQLDept);
+    $result2 = mysqli_query($con, $roundtripSQLArriv);
+    //$row = mysqli_fetch_array($result);
+    //echo "$row";
+
+    // $roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airportcode = '$txtArriv_airport'";
+    // $roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airport = '$txtArriv_airport'  AND arriv_airport = '$txtDept_airport'";
+    //$oneWaySQL
+
+?>
+
+
     <div class="container">
         <h1 class ="center">
             Air Connect
@@ -115,38 +109,64 @@
         echo "<div class= dispute>
             <table style=width:80%>
             <tr>
-            <th>Dispute Number</th>
-            <th>Dispute type</th>
-            <th>Customer ID</th>
+            <th>Flight Number</th>
+            <th>Departure Date</th>
+            <th>Arrival Date</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Airline Name</th>
+            <th>Departure Airport</th>
+            <th>Arrival Airport</th>
+            <th>EcoSeatCost</th>
+
             </tr>";
 
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                  
+                
                     echo"<tr>
-                    <td> " . $row["ref_num"]. " </td>
-                    <td> ". $row["ref_type"]. " </td>
-                    <td> ". $row["customer_id"]. " </td>
+                    <td> " . $row["flight_number"]. " </td>
+                    <td> ". $row["dept_date_time"]. " </td>
+                    <td> ". $row["arriv_date_time"]. " </td>
+                    <td> ". $row["dept_time"]. " </td>
+                    <td> ". $row["arriv_time"]. " </td>
+                    <td> ". $row["airline_name"]. " </td>
+                    <td> ". $row["dept_airportcode"]. " </td>
+                    <td> ". $row["arriv_airportcode"]. " </td>
+                    <td> ". $row["EcoSeatCost"]. " </td>
+                    <td> <button class =btn btn-dark fw-bold btn-md inp-width type=submit name=selectBtn>Select</button> 
+                    
+                    
                     </tr>";
+                }
+            }
 
+            if ($result2->num_rows > 0) {
+                // output data of each row
+                while($row2 = $result2->fetch_assoc()) {
+                
+                    echo"<tr>
+                    <form method=post action = payment.php>
+                    
+                    <td> " . $row2["flight_number"]. " </td>
+                    <td> ". $row2["dept_date_time"]. " </td>
+                    <td> ". $row2["arriv_date_time"]. " </td>
+                    <td> ". $row2["dept_time"]. " </td>
+                    <td> ". $row2["arriv_time"]. " </td>
+                    <td> ". $row2["airline_name"]. " </td>
+                    <td> ". $row2["dept_airportcode"]. " </td>
+                    <td> ". $row2["arriv_airportcode"]. " </td>
+                    <td> ". $row2["EcoSeatCost"]. " </td>
+                    <td> <button onclick =signUp() class =btn btn-dark fw-bold btn-md inp-width type=submit name=selectBtn>Select</button> 
+                    
+                    </form>
+                    </tr>";
                 }
             }
             echo" </table></div>";        
         ?>
-        <div class="SideBar">
-            <a class="main" href="#DashBoard">DashBoard</a>
-            <a href="http://localhost/Admin_page_customers.php">Customer</a>
-            <a href="http://localhost/Admin_page_disputes.php" color = "purple">Disputes</a>
-            <div class="Logout">
-                <a href="http://127.0.0.1:5501/SignIn_Admin.html">Log-Out</a>
-            </div>
-            <div class="Admin">
-                Admin Page
-            </div>
-        </div>
-        
-    </div>";
+    </div>
 </body>
 <script>
 

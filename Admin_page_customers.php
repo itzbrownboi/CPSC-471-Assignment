@@ -19,10 +19,12 @@
     }
 
 
-    $siteCustomerSQL = "SELECT * FROM customer";
+    $siteCustomerSQL = "SELECT * FROM customer WHERE customer_id NOT IN(SELECT administrator_id FROM administrator) ";
+    $siteDoublesSQL = "SELECT customer_id , COUNT(*) FROM customer GROUP BY customer_id HAVING COUNT(*) > 1 ";
     
     $result5 = mysqli_query($con, $siteCustomerSQL);
-
+    $result6 = mysqli_query($con, $siteDoublesSQL);
+    
         
 
 ?>
@@ -68,7 +70,7 @@
             </div>
         </div>
         
-    </div>";
+    </div>
 </body>
 <script>
 

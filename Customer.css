@@ -186,3 +186,23 @@
     padding: 50px 60px 70px;
     text-align: center;
   }
+  table {
+    margin-left: 5%;
+    margin-top: 60%;
+    align-items: center;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    margin-top: 50;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  

@@ -1,66 +1,85 @@
 <?php
-
-$con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
-
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-$txtEmail = $_POST['txtEmail'];
-$txtcardName = $_POST['txtcardName'];
-$txtCardNumber = $_POST['txtCardNumber']; 
-$txtmonyear = $_POST['txtmonyear'];
-$txtCVV = $_POST['txtCVV'];
-$txtCountry = $_POST['txtCountry'];
-$txtCity = $_POST['txtCity'];
-$txtAddress = $_POST['txtAddress'];
-$txtZipCode = $_POST['txtZipCode'];
-
-
-
-// database insert SQL code
-
-
-//Check if user email is already registered
-$sql = "SELECT * FROM end_user WHERE user_email = '$txtEmail' ";
-$result = mysqli_query($con, $sql);
-$row = mysqli_fetch_array($result);
-
-$sql2 = "SELECT * FROM customer WHERE customer_id = '$txtEmail' ";
-$result2 = mysqli_query($con, $sql2);
-$row2 = mysqli_fetch_array($result2);
-
-if(!is_array($row))
-{ 
-    echo '<script type="text/javascript">';
-    echo  'alert("Please enter registered email");';
-    echo 'window.location.replace("http://localhost/payment.html");';
-    echo "</script>";
-}
-else{
-    if(!is_array($row2)){
-
-        $sql2 = "INSERT INTO customer (customer_id, payment_info, card_number, cvv, zip_code,monthyear) VALUES ('$txtEmail','$txtCardName', '$txtCardNumber', '$txtCVV', '$txtZipCode', '$txtmonyear')";
-        $result2 = mysqli_query($con, $sql2);
-        //Go to Reservation page here
-        echo '<script type="text/javascript">';
-        echo  'alert("Payment Successful");';
-        echo 'window.location.replace("http://localhost/TicketConfirm.html");';
-        echo "</script>";
-    }
-    else{
-        echo '<script type="text/javascript">';
-        echo  'alert("Payment Successful");';
-        echo 'window.location.replace("http://localhost/TicketConfirm.html");';
-        echo "</script>";
-    }
-    
-}
-
-
-
-//close db
-mysqli_close($con);
-
+session_start();
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name = "viewport" content="width=device-wifth, initial-scale=1.0">
+    <title> Payment Form</title>
+    <link rel ="stylesheet" href="pay.css">
+    <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
+ 
+  </head>
+  <body>
+    <!-- body -->
+    <div class="container">
+        <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
+        <div class="form-box">
+            <!-- <h1 id="title">
+                Payment Method
+            </h1> -->
+            <form method="post" action="payment.php">
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input id = "txtcardName"name = "txtcardName"type = "Name" placeholder="Name on the Card">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input id = "txtEmail" name = "txtEmail" type = "email" placeholder="example@example.com">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-regular fa-lock"></i>
+                        <input id = "txtCardNumber" name = "txtCardNumber" type = "Card Number" placeholder="Card Number:xxxx xxxx xxxx xxxx">
+                        <img src="cards.pnj.webp" alt="" width="100">
+                    </div>
+                    <div class="input-card1">
+                        <input id = "txtmonyear" name = "monyear" type = "text" placeholder="MM/YY">
+                        
+                    </div>
+                    <div class="input-card2">
+                        
+                        <input id = "txtCVV" name = "txtCVV" type = "number" placeholder="CVV">
+                    </div>
+                    <div class ="Billing">
+                        <!-- <h1 id="title-1">
+                            Billing Address
+                        </h1> -->
+                    </div>
+                    <div class="input-card3">
+                        <input name = "txtCountry" id = "txtCountry" type = "text" placeholder="Country" >
+                        
+                    </div>
+                    <div class="input-card3">
+                        <input name = "txtCity" id = "txtCity" type = "text" placeholder="City" >
+                        
+                    </div>
+                    <div class="input-card3">
+                        <input id = "txtAddress" name = "txtAddress" type = "text" placeholder="Address" >
+                        
+                    </div>
+                    <div class="input-card3">
+                        <input name = "txtZipCode" id = "txtZipCode" type = "txt" placeholder="Postal Code" >
+                        
+                    </div>
+                    <div class="button-Admin">
+                        <button type="submit" id="submitField">Proceed to Checkout</button>
+                    </div>
+            </form>
+                    <div class="Virtual-Card1">
+                        <img src="frontcredit.png" width="90%" >
+                        
+                        
+                    </div>
+                <div class="Virtual-Card2">
+                    <img src="backcredit.png" width="90%" >
+                </div>
+                    
+                </div>
+
+        
+    </div>
+
+  </body>
+</html>

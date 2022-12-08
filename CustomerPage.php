@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,7 +65,7 @@
                 </a></div>";
         ?>
         <div class="SideBar">
-            <a class="main" href="#DashBoard">DashBoard</a>
+            <a class="main" http://localhost/Admin_page_CustomerPage.php">DashBoard</a>
             <a href="http://localhost/Admin_page_customers.php">Customer</a>
             <a href="http://localhost/Admin_page_disputes.php">Disputes</a>
             <div class="Logout">

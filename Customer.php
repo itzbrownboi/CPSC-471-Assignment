@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
 
@@ -7,63 +8,93 @@ if (mysqli_connect_errno($con))
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$txtCustomer_ID = $_POST['txtCustomer_ID'];
-$txtRefID = rand();
-$RefIDSQL = "SELECT reference_num FROM disputes WHERE '$txtRefID' NOT IN reference_num";
-$tempresult = mysqli_query($con, $RefIDSQL);
-$tempRow = mysqli_fetch_array($tempresult);
-
-while(is_array($tempRow)){
-    $txtRefID = rand();
-    $RefIDSQL = "SELECT reference_num FROM disputes WHERE '$txtRefID' NOT IN reference_num";
-    $tempresult = mysqli_query($con, $RefIDSQL);
-    $tempRow = mysqli_fetch_array($tempresult);
-}
-
-// The RefID should do a random number and if it is already take, it should come up with anew random number. Help me if you can
-//If y'all can figure it out let me know
-
-//Display current status of arrays given users username
-$currentRefrencesSQL = "SELECT reference_num, ref_type, customer_id FROM dispute WHERE customer_id == '$txtCustomer_ID ";
-$result = mysqli_query($con, $currentRefrencesSQL);
-$display = mysqli_fetch_array($result);
-
-//Show Customer details
-$cutomer_informationSQL = "SELECT end_user_id, FName, LName, user_email  FROM end_user WHERE customer_id == '$txtCustomer_ID ";
-$customer_cardSQL = "SELECT card_number, payment_info, customer_id FROM customer WHERE customer_id == '$txtCustomer_ID ";
-$customer_reservationSQL = "SELECT =reservation_num, seat_type, check_in, carry_on, reservation_date, flight_number FROM reservation WHERE customer_id == '$txtCustomer_ID ";
-
-//run above sql
-$res1 = mysqli_query($con, $customer_informationSQL);
-$res2 = mysqli_query($con, $customer_cardSQL);
-$res3 = mysqli_query($con, $customer_reservationSQL);
-
-$entry1 = mysqli_fetch_array($res1);
-$entry2 = mysqli_fetch_array($res2);
-$entry3 = mysqli_fetch_array($res3);
-//Insert additonal Dispute if required
-
-//Need if statement from HTML to determine whether this is ran or not.
-$newRefrennceSQL = "INSERT INTO disputes (reference_num, ref_type, administrator_id, customer_id) VALUES ('$txtRefID', '$txtRefType', NULL, '$txtCustomer_ID')";
-$result2 = mysqli_query($con, $newRefrennceSQL);
-$display2 = mysqli_fetch_array($result2);
-
-//Delete Dispute if required
-
-//Need if statement from HTML to determine whether this is ran or not
-//Need insert from HTML about what refrence_num the customer is deleting
-$delRefrennceSQL = "DELETE FROM disputes WHERE $refIDDelete == refrence_num";
-$result3 = mysqli_query($con, $delRefrennceSQL);
-$display2 = mysqli_fetch_array($result3);
+$txtRefrenceId = $_POST['txtRefrenceId'];
+// $txtDisputeInfo = $_POST['txtRefrenceId'];
+$txtAdminId = $_POST['txtAdminId'];
+$txtUserID = $_SESSION['userID'];
 
 
 
+$customerReservationSQL = "SELECT * FROM reservation WHERE customer_ID = '$txtUserID'";
+// $customerReservationsSQL = "SELECT COUNT(ref_num) FROM dispute";
 
 
 
-
-
-//close db
-mysqli_close($con);
+    $result = mysqli_query($con, $customerReservationSQL);
+    //$row = mysqli_fetch_array($result);
+    
 
 ?>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content="width=device-wifth, initial-scale=1.0">
+        <title> Customer Page</title>
+        <link rel ="stylesheet" href="Customer.css">
+        <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
+     
+      </head>
+<body>
+    <div class="container">
+        <a class="navbar-brand" href="http://localhost/HomePage.html">Air Connect</a>
+        <div class="form-box">
+            <h2 id="title">
+                Profile
+            </h2>
+            <?php
+                echo" <h3>
+                User_Email: ".$_SESSION["userID"]."
+                </h3>
+                <h4>
+                Bookings
+                </h4>
+                <table style=width:80%>
+                    <tr>
+                    <th>Reservation ID</th>
+                    <th>Flight Number</th>
+                    <th>Route Name</th>
+                    <th>Reservation Date</th>
+                    <th>Arrival Date</th>
+                    </tr>";
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                        
+                            echo"<tr>
+                            <td> " . $row["reservation_number"]. " </td>
+                            <td> ". $row["flight_number"]. " </td>
+                            <td> ". $row["route_name"]. " </td>
+                            <td> ". $row["reservation_date"]. " </td>
+                            </tr>";
+    
+                        }
+                    }
+                echo "</table>";
+            ?>
+            </div>
+        <div class="SideBar">
+            <a class="main" href="http://localhost/Customer.php">Profile</a>
+            <a href="http://localhost/privacy.php">Privacy</a>
+            <a href="http://localhost/Disputes.php">Disputes</a>
+            <div class="Logout">
+                <?php session_abort();?>
+                <a href="http://localhost/User_SignIn.html">Log-Out</a>
+            </div>
+            <div class="User">
+                Customer Account 
+            </div>
+          
+                    
+            </form>
+        </div>
+        
+    </div>
+</body>
+
+<?php
+
+?>
+
+</html>

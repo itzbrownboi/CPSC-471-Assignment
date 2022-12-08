@@ -1,52 +1,67 @@
 <?php
-
-$con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
-
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-$txtcustomerEmail = $_POST['txtEmail'];
-$txtDescription = $_POST['txtDescription'];
-$txtDisSubject = $_POST['txtDisSubject'];
-
-if($txtcustomerEmail== null and $txtDescription==null and $txtDisSubject==null ){
-    echo '<script type="text/javascript">';
-    echo  'alert("Kindly input your registered email and dispute");';
-    echo 'window.location.replace("http://localhost/Disputes.html");';
-    echo "</script>";
-}
-
-//Check if user email is already registered
-$sql = "SELECT * FROM end_user WHERE user_email = '$txtcustomerEmail' ";
-$result = mysqli_query($con, $sql);
-$row = mysqli_fetch_array($result);
-
-if(!is_array($row))
-{   
-
-    echo '<script type="text/javascript">';
-    echo  'alert("Kindly input the email you registered with");';
-    echo 'window.location.replace("http://localhost/Disputes.html");';
-    echo "</script>";
-}
-
-$sqlget = "SELECT COUNT(customer_id) FROM customer";
-$resultget = mysqli_query($con, $sqlget);
-$newresult = mysqli_fetch_array($resultget);
-$finalresult = $newresult[0];
-
-$sql = "INSERT INTO dispute (ref_num, ref_type, administrator_id, customer_id) VALUES ('$finalresult', '$txtDescription', null, '$txtcustomerEmail')";
-
-$result = mysqli_query($con, $sql);
-
-echo '<script type="text/javascript">';
-echo  'alert("Dispute received.");';
-echo 'window.location.replace("http://localhost/Disputes.html");';
-echo "</script>";
-
-
-//close db
-mysqli_close($con);
-
+session_start();
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content="width=device-wifth, initial-scale=1.0">
+        <title> Dispute Page</title>
+        <link rel ="stylesheet" href="Disputes.css">
+        <script src="https://kit.fontawesome.com/595311b478.js" crossorigin="anonymous"></script> 
+     
+      </head>
+<body>
+    <div class="container">
+        <a class="navbar-brand" href="http://localhost/index.html?Adults=9">Air Connect</a>
+        <div class="form-box">
+            <h2 id="title">
+                Dispute
+            </h2>
+            <form method="post" action = "Disputes1.php">
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtEmail" id = "Email" type = "email" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fa-regular fa-lock"></i>
+                    <input name = "txtDisSubject" id = "txtDisSubject" type = "text" placeholder="Subject of Dispute">
+                </div>
+                <div class="input-field-1">
+                    <i class="fa-sharp fa-solid fa-align-justify"></i>
+                    <input name = "txtDescription" id = "txtDescription" type = "text" placeholder="Description">
+                </div>
+                <div class="button-field">
+                    <button type="submit" name="Submit" >Submit</button>               
+                </div>
+            </form>
+        </div>
+        <div class="SideBar">
+            <a class="main" href="http://localhost/Customer.php">Profile</a>
+            <a href="http://localhost/privacy.php">Privacy</a>
+            <a href="http://localhost/Disputes.php">Disputes</a>
+            <div class="Logout">
+                <?php session_abort();?>
+                <a href="http://localhost/User_SignIn.html">Log-Out</a>
+            </div>
+            <div class="User">
+                Customer Account 
+            </div>
+          
+                    
+            </form>
+        </div>
+        
+    </div>
+</body>
+<!-- <script>
+
+    function Profile() {
+      if(isset($_POST['Profile'])){
+          
+        window.location = "http://127.0.0.1:5501/Customer.html#DashBoard";
+      }
+    }
+  </script> -->
+
+</html>

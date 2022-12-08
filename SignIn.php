@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $con = mysqli_connect('localhost', 'root', 'iamrootuser','471project');
 
 if (mysqli_connect_errno($con))
@@ -21,7 +23,10 @@ $row = mysqli_fetch_array($result);
 
 if(is_array($row))
 {    
-    header('location: http://localhost/Home.html'); 
+    $_SESSION["userID"] = $txtEmail;
+    //$txtacct = $txtEmail;
+    echo ($_SESSION);
+    header('location: http://localhost/HomePage.php'); 
 }
 else
 {
@@ -30,7 +35,7 @@ else
     echo 'window.location.replace("http://localhost/User_SignIn.html");';
     echo "</script>";
 }
-
+ 
 
 mysqli_close($con);
 

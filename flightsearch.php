@@ -7,17 +7,28 @@ if (mysqli_connect_errno($con))
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$txtDept_Date = $_POST['txtDept_Date'];
-$txtArriv_Date = $_POST['txtArriv_Date'];
-$txtDept_airport = $_POST['txtDept_airport'];
-$txtArriv_airport = $_POST['txtArriv_airport'];
-$trip = $_POST['txttrip'];
+$txtDept_Date = $_POST['deparure'];
+$txtArriv_Date = $_POST['return'];
+$txtDept_airport = $_POST['From'];
+$txtArriv_airport = $_POST['To'];
+//$trip = $_POST['txttrip'];
 
-if(isset($_POST['Roundtrip'])){
-    ;
+
+$roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airportcode = '$txtDept_airport'";
+$roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airport = '$txtArriv_airport'  AND arriv_airport = '$txtDept_airport'";
+$oneWaySQL = "SELECT * FROM flights WHERE user_email = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airport = '$txtArriv_airport'";
+
+if(isset($_POST['txtRoundTrip'])){
+    $result = mysqli_query($con, $roundtripSQLDept);
+    $result2 = mysqli_query($con, $roundtripSQLArriv);
+    $row = mysqli_fetch_array($result);
+    $row2 = mysqli_fetch_array($result2);
+
+    header('Location:  http://localhost/SearchResult.php?row='.$row.'&row2='.$row2);   
 }
-else if(isset($_POST['OneWay'])){
-    ;
+else if(isset($_POST['txtOneWay'])){
+    $result = mysqli_query($con, $oneWaySQL);
+    $row = mysqli_fetch_array($result); 
 }
 else{
    ; //select round or OneWay
@@ -29,7 +40,7 @@ else{
 if($txtDept_airport == $txtArriv_airport){
     echo '<script type="text/javascript">';
     echo  'alert("Both airports cannot be the same");';
-    echo 'window.location.replace("http://localhost/Home.html");';
+    echo 'window.location.replace("http://localhost/HomePage.php");';
     echo "</script>";
 }
 
@@ -78,20 +89,13 @@ if($txtArriv_airport == "Edmonton"){
     $txtArriv_airport = "YEG";
 }
 
-$roundtripSQLDept = "SELECT * FROM flights WHERE dept_date_time = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airportcode = '$txtDept_airport'";
-$roundtripSQLArriv = "SELECT * FROM flights WHERE dept_date_time = '$txtArriv_Date' AND dept_airport = '$txtArriv_airport'  AND arriv_airport = '$txtDept_airport'";
-$oneWaySQL = "SELECT * FROM flights WHERE user_email = '$txtDept_Date' AND dept_airport = '$txtDept_airport' AND arriv_airport = '$txtArriv_airport'";
+
 
 
 
 // insert in database 
 // if($trip){
-    $result = mysqli_query($con, $roundtripSQLDept);
-    $result2 = mysqli_query($con, $roundtripSQLArriv);
-    $row = mysqli_fetch_array($result);
-    $row2 = mysqli_fetch_array($result2);
 
-    header('Location:  http://localhost/SearchResult.php?row='.$row.'&row2='.$row2);
     
 
 // }
